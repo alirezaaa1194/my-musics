@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1" />
+    <link rel="icon" href="/public/images/3d-social-media-icons-music-free-png.webp" />
+    <link rel="stylesheet" href="style/style.css" />
+    <title>آهنگ های من</title>
+  </head>
+  <body>
+    <div class="container"></div>
+    <div class="music-modal">
+      <div class="modal-header">
+        <button class="close-modal-btn">X</button>
+      </div>
+      <div class="modal-body">
+        <label for="music-name-input">نام آهنگ را وارد کنید: </label>
+        <input type="text" class="music-name-input" id="music-name-input" />
+
+        <label for="music-link-input">لینک آهنگ را وارد کنید: </label>
+        <input type="text" class="music-link-input" id="music-link-input" />
+
+        <label for="music-file-input">فایل آهنگ را آپلود کنید: </label>
+        <input type="file" class="music-file-input" id="music-file-input" />
+      </div>
+      <div class="modal-footer">
+        <button class="add-music-btn">افزودن</button>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="loader">
+      <span></span>
+    </div>
+    <button class="open-music-modal-btn">+</button>
+    <script src="js/app.js"></script>
+  </body>
+</html>
