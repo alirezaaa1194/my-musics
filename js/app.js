@@ -31,13 +31,14 @@ const getMusics = async () => {
 };
 
 const musicsGenerator = (musics) => {
+  musics.reverse()
   container.innerHTML = "";
-  musics.forEach((music) => {
+  musics.forEach((music, i) => {
     container.insertAdjacentHTML(
       "beforeend",
       `
     <div class="box">
-        <p class="music-name">${music.name}</p>
+        <p class="music-name">${i+1}_ ${music.name}</p>
         <audio src="${music.src}" controls></audio>
         <button class="remove-music-btn" id="${music.id}">حذف</button>
       </div>
@@ -48,14 +49,14 @@ const musicsGenerator = (musics) => {
   removeMusicBtns.forEach((btn) => {
     btn.addEventListener("click", () => removeMusicHandler(btn.id));
   });
-  loader.classList.add('hide')
+  loader.classList.add("hide");
 };
 
 const removeMusicHandler = async (id) => {
   let wantRemove = confirm("آیا میخواهید آهنگ را حذف کنید؟ ");
   if (wantRemove) {
     const res = await fetch(`https://musics.liara.run/musics/${id}`, { method: "DELETE" });
-    loader.classList.remove('hide')
+    loader.classList.remove("hide");
     getMusics();
   }
 };
@@ -71,7 +72,8 @@ const addMusicHandler = async () => {
       };
 
       const res = await fetch(`https://musics.liara.run/musics`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(newMusicInfo) });
-      console.log(res);
+      closeModal();
+      getMusics();
     } else {
       alert("لطفا یکی از فیلد هارا پرکنید");
     }
