@@ -31,15 +31,15 @@ const getMusics = async () => {
 };
 
 const musicsGenerator = (musics) => {
-  musics.reverse()
+  musics.reverse();
   container.innerHTML = "";
   musics.forEach((music, i) => {
     container.insertAdjacentHTML(
       "beforeend",
       `
     <div class="box">
-        <p class="music-name">${i+1}_ ${music.name}</p>
-        <audio src="${music.src}" controls></audio>
+        <p class="music-name">${i + 1}_ ${music.name}</p>
+        <audio src="${music.src}" id="audio-${i + 1}" controls></audio>
         <button class="remove-music-btn" id="${music.id}">حذف</button>
       </div>
     `
@@ -49,6 +49,22 @@ const musicsGenerator = (musics) => {
   removeMusicBtns.forEach((btn) => {
     btn.addEventListener("click", () => removeMusicHandler(btn.id));
   });
+
+  let audios = document.querySelectorAll("audio");
+
+  audios.forEach((audio) =>
+    audio.addEventListener("play", () => {
+      audios.forEach((audio2) => {
+        if (audio2.id !== audio.id) {
+          audio2.currentTime = 0;
+          audio2.pause();
+          audio2.classList.remove('palying')
+        }
+      });
+      audio.classList.add('palying')
+    })
+  );
+
   loader.classList.add("hide");
 };
 
