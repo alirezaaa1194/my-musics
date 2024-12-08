@@ -24,7 +24,7 @@ const closeModal = () => {
 };
 
 const getMusics = async () => {
-  const res = await fetch(`https://musics.liara.run/musics`);
+  const res = await fetch(`https://6755c81011ce847c992b256d.mockapi.io/my-music`);
   const datas = await res.json();
 
   musicsGenerator(datas);
@@ -71,7 +71,7 @@ const musicsGenerator = (musics) => {
 const removeMusicHandler = async (id) => {
   let wantRemove = confirm("آیا میخواهید آهنگ را حذف کنید؟ ");
   if (wantRemove) {
-    const res = await fetch(`https://musics.liara.run/musics/${id}`, { method: "DELETE" });
+    const res = await fetch(`https://6755c81011ce847c992b256d.mockapi.io/my-music/${id}`, { method: "DELETE" });
     loader.classList.remove("hide");
     getMusics();
   }
@@ -87,7 +87,7 @@ const addMusicHandler = async () => {
         src,
       };
 
-      const res = await fetch(`https://musics.liara.run/musics`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(newMusicInfo) });
+      const res = await fetch(`https://6755c81011ce847c992b256d.mockapi.io/my-music`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(newMusicInfo) });
       closeModal();
       getMusics();
     } else {
